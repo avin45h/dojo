@@ -16,10 +16,15 @@ var sort = exports = module.exports = {
     },
     bubble: function (arr) {
         for (let i = 0; i < arr.length; i++) {
+            var swap = false;
             for (let j = 0; j < (arr.length - 1) - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     util.swap(arr, j, j + 1);
+                    swap = true;
                 }
+            }
+            if(!swap){
+                break;
             }
         }
         return arr;
@@ -27,7 +32,7 @@ var sort = exports = module.exports = {
 };
 
 var util = require('./util');
-util.anal   yze(function (init, done) {
+util.analyze(function (init, done) {
     console.log(sort.selection([8, 7, 6, 2, 4, 1, 3, 5, 1, 3]));
     done(init);
 });
