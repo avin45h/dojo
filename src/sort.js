@@ -47,11 +47,9 @@ var sort = exports = module.exports = {
             var element = arr[i];
             var j = i-1;
             for(;j>=0 && arr[j] > element; j--){
-                console.log("%d && %d && %d", j, arr[j], element);
                 arr[j+1] = arr[j];
             }
             arr[j+1] = element;
-            console.log("Moved %d to %d ",element,j+1, arr );
         }
         return {
             tag: "insertion",
