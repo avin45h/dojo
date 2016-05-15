@@ -15,6 +15,7 @@ var sort = exports = module.exports = {
             swapCounter++;
         }
         return {
+            tag: "selection",
             arr: arr,
             swaps: swapCounter
         };
@@ -35,6 +36,25 @@ var sort = exports = module.exports = {
             }
         }
         return {
+            tag: "bubble",
+            arr: arr,
+            swaps: swapCounter
+        };
+    },
+    insertionSort: function (arr) {
+        var swapCounter = 0;
+        for (let i = 1; i < arr.length; ++i) {
+            var element = arr[i];
+            var j = i-1;
+            for(;j>=0 && arr[j] > element; j--){
+                console.log("%d && %d && %d", j, arr[j], element);
+                arr[j+1] = arr[j];
+            }
+            arr[j+1] = element;
+            console.log("Moved %d to %d ",element,j+1, arr );
+        }
+        return {
+            tag: "insertion",
             arr: arr,
             swaps: swapCounter
         };
@@ -48,5 +68,10 @@ util.analyze(function (init, done) {
 });
 util.analyze(function (init, done) {
     console.log(sort.bubble([8, 7, 6, 2, 4, 1, 3, 5, 1, 3]));
+    done(init);
+});
+
+util.analyze(function (init, done) {
+    console.log(sort.insertionSort([8, 7, 6, 2, 4, 1, 3, 5, 1, 3]));
     done(init);
 });
