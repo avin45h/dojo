@@ -2,6 +2,7 @@
 
 var sort = exports = module.exports = {
     selection: function (arr) {
+        var swapCounter = 0;
         for (let i = 0; i < arr.length; i++) {
             var min = {elem: arr[i], pos: i};
             for (let j = i; j < arr.length; j++) {
@@ -10,24 +11,33 @@ var sort = exports = module.exports = {
                     min.pos = j;
                 }
             }
-            util.swap(arr, i, min.pos)
+            util.swap(arr, i, min.pos);
+            swapCounter++;
         }
-        return arr;
+        return {
+            arr: arr,
+            swaps: swapCounter
+        };
     },
     bubble: function (arr) {
+        var swapCounter = 0;
         for (let i = 0; i < arr.length; i++) {
             var swap = false;
             for (let j = 0; j < (arr.length - 1) - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     util.swap(arr, j, j + 1);
+                    swapCounter++;
                     swap = true;
                 }
             }
-            if(!swap){
+            if (!swap) {
                 break;
             }
         }
-        return arr;
+        return {
+            arr: arr,
+            swaps: swapCounter
+        };
     }
 };
 
